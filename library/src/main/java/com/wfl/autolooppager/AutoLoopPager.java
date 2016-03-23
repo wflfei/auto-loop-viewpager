@@ -77,6 +77,10 @@ public class AutoLoopPager extends RelativeLayout {
         }
     }
 
+    public void setIndicatorAnimed(boolean animed) {
+        mIndicator.setAnimated(animed);
+    }
+
     public void setAdapter(RecycleAdapter adapter) {
         mAdapter = new MyPagerAdapter(adapter);
         mViewPager.setAdapter(mAdapter);

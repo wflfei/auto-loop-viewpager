@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Demo</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_auto">Auto Play</string>
+    <string name="action_stop_autoplay">Stop AutoPlay</string>
+    <string name="action_anim">Anim Indicator</string>
+    <string name="action_no_anim">Static Indicator</string>
+</resources>

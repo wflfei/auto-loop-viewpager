@@ -81,13 +81,14 @@ public class AnimCirclePagerIndicator extends View implements PagerIndicator {
         }
     }
 
+    @Override
     public void setAnimated(boolean animated) {
         this.mAnimated = animated;
     }
 
     @Override
     public void onPageScroll(int position, float positionOffset, int positionOffsetPixels) {
-        Log.d(TAG, "onPageScroll: " + String.format("position=%d, posstionOffset=%f, positionPixels=%d", position, positionOffset, positionOffsetPixels));
+//        Log.d(TAG, "onPageScroll: " + String.format("position=%d, posstionOffset=%f, positionPixels=%d", position, positionOffset, positionOffsetPixels));
         if (mAnimated) {
             mAnimPosition = position;
             mCurrentOffset = positionOffset;

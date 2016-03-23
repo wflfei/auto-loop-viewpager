@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.wfl.autolooppager.demo.MainActivity"
+    tools:showIn="@layout/app_bar_main">
+
+    <com.wfl.autolooppager.AutoLoopPager
+        android:id="@+id/autoPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <!--<ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/autoPager"
+        android:layout_marginTop="3dp"
+        android:src="@mipmap/content"
+        android:scaleType="centerCrop"
+        />-->
+</RelativeLayout>

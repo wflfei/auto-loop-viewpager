@@ -4,7 +4,8 @@ package com.wfl.autolooppager;
  * Created by wfl on 16/3/21.
  */
 public interface PagerIndicator {
-    public void onPageScroll(int position, float positionOffset, int positionOffsetPixels);
-    public void setCount(int count, int current);
-    public void setCurrentPosition(int currentPosition);
+    void onPageScroll(int position, float positionOffset, int positionOffsetPixels);
+    void setCount(int count, int current);
+    void setCurrentPosition(int currentPosition);
+    void setAnimated(boolean animated);
 }
