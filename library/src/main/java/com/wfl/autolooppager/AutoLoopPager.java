@@ -17,6 +17,11 @@ import android.widget.RelativeLayout;
  *
  * <p>自动可循环滚动的ViewPager，带有页面指示器</p>
  *
+ * <p>可以根据设置的宽高比{@link #setAspectRatio(float)}来布局，决定View的宽高。 如需要以宽度为基准
+ * 计算高度则可以设置layout_width为match_parent或固定的数值，设置layout_height为wrap_content；如
+ * 果需要以高度固定来计算宽度，则需要设置layout_height为match_parent或者固定的数值，同时设置
+ * layout_width为wrap_content</p>
+ *
  * @author Wang Fulin
  */
 public class AutoLoopPager extends RelativeLayout {
@@ -225,7 +230,7 @@ public class AutoLoopPager extends RelativeLayout {
         if (position < 0 || position >= mCount) {
             return;
         }
-        mViewPager.setCurrentItem(mCurrent, true);
+        mViewPager.setCurrentItem(position, true);
         mIndicator.setCurrentPosition(position);
     }
 
@@ -248,14 +253,25 @@ public class AutoLoopPager extends RelativeLayout {
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-        int measuredWidth = widthSize;
-        if (heightMode == MeasureSpec.EXACTLY) {
-            setMeasuredDimension(measuredWidth, heightSize);
-        } else if (heightMode == MeasureSpec.AT_MOST || heightMode == MeasureSpec.UNSPECIFIED) {
-            // 根据宽高比计算出高度
-            int height = (int) (widthSize / mAspectRatio);
-            setMeasuredDimension(measuredWidth, height);
+        int measuredHeight = heightSize, measuredWidth = widthSize;
+        if (widthMode != MeasureSpec.EXACTLY && heightMode == MeasureSpec.EXACTLY) {
+            // 以高度为基准计算的情况
+            // 根据宽高比计算出宽度
+            measuredWidth = (int) (measuredHeight / mAspectRatio);
+            if (measuredWidth > widthSize) {
+                measuredWidth = widthSize;
+            }
+        } else {
+            // 以宽度为基准计算的情况
+            if (heightMode != MeasureSpec.EXACTLY) {
+                // 根据宽高比计算出高度
+                measuredHeight = (int) (widthSize / mAspectRatio);
+                if (measuredHeight > heightSize) {
+                    measuredHeight = heightSize;
+                }
+            }
         }
+        setMeasuredDimension(measuredWidth, measuredHeight);
 
         int heightSpec = MeasureSpec.makeMeasureSpec(getMeasuredHeight(), MeasureSpec.EXACTLY);
         super.onMeasure(widthMeasureSpec, heightSpec);
