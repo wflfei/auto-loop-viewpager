@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         autoLoopPager = (AutoLoopPager) findViewById(R.id.autoPager);
+        autoLoopPager.setAspectRatio(16f / 9f);
         formData();
         MyAdapter adapter = new MyAdapter();
         adapter.datas = banners;
