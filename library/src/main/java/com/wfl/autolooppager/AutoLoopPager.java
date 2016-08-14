@@ -258,7 +258,7 @@ public class AutoLoopPager extends RelativeLayout {
             // 以高度为基准计算的情况
             // 根据宽高比计算出宽度
             measuredWidth = (int) (measuredHeight / mAspectRatio);
-            if (measuredWidth > widthSize) {
+            if (widthMode == MeasureSpec.AT_MOST && measuredWidth > widthSize) {
                 measuredWidth = widthSize;
             }
         } else {
@@ -266,7 +266,7 @@ public class AutoLoopPager extends RelativeLayout {
             if (heightMode != MeasureSpec.EXACTLY) {
                 // 根据宽高比计算出高度
                 measuredHeight = (int) (widthSize / mAspectRatio);
-                if (measuredHeight > heightSize) {
+                if (heightMode == MeasureSpec.AT_MOST && measuredHeight > heightSize) {
                     measuredHeight = heightSize;
                 }
             }
