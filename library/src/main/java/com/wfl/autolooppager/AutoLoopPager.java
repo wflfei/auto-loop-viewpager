@@ -70,18 +70,23 @@ public class AutoLoopPager extends RelativeLayout {
     }
 
     /**
-     * 设置是否可以自动滚动切换
+     * Set whether this LoopViewPager need to scroll automaticaly
+     * <p>设置是否自动滚动</p>
      * @param auto
      */
     public void setAutoPlay(boolean auto) {
-        this.mAutoPlay = auto;
-        if (!mAutoPlay) {
+        if (!auto && mAutoPlay) {
             removeCallbacks(autoRunnable);
-        } else {
+        } else if (auto && !mAutoPlay){
             postDelayed(autoRunnable, mDuration);
         }
+        this.mAutoPlay = auto;
     }
 
+    /**
+     * Set whether the Indicator animated when ViewPager is scrolling
+     * @param animed
+     */
     public void setIndicatorAnimed(boolean animed) {
         mIndicator.setAnimated(animed);
     }
@@ -97,7 +102,7 @@ public class AutoLoopPager extends RelativeLayout {
     }
 
     /**
-     * 获取当前显示的Item位置，是真实数据的位置
+     * Get the current shown position in real data
      * @return 当前的位置
      */
     public int getCurrentItem() {
@@ -105,6 +110,7 @@ public class AutoLoopPager extends RelativeLayout {
     }
 
     /**
+     * <p>Set the automaticaly scroll duration: millisecond</p>
      * 设置自动滚动的间隔时间，以毫秒为单位
      * @param autoDuration 自动滚动的间隔时间，以毫秒为单位。
      */
